@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csi-driver
+  namespace: default
+  labels:
+    app: csi-driver
+spec:
+  selector:
+    matchLabels:
+      app: csi-driver
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container:  csi-driver
+      labels:
+        app: csi-driver
+    spec:
+      containers:
+      - name: csi-driver
+        image: "grantfl/csi-driver:latest"
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+      restartPolicy: Always
+
