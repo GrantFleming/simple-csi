@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "./internal/server/testapi";
+
+message Request {
+  string ping = 1;
+}
+
+message Response {
+ string pong = 1;
+}
+
+service TestService {
+  rpc Ping(Request) returns (Response);
+}
