@@ -11,22 +11,22 @@ test:
 build:
 	for GOOS in $(GOOSES); do \
 		for GOARCH in $(GOARCHES); do \
-			env GOOS=$$GOOS GOARCH=$$GOARCH go build -o build/bin/$$GOOS/$$GOARCH/csi-driver cmd/csi-driver/main.go; \
+			env GOOS=$$GOOS GOARCH=$$GOARCH go build -o build/bin/$$GOOS/$$GOARCH/simple-csi cmd/simple-csi/main.go; \
 		done; \
 	done
 
 .PHONY: package
 package:
-	docker build -f build/package/csi-driver/Dockerfile --platform linux/amd64 -t grantfl/csi-driver .
+	docker build -f build/package/simple-csi/Dockerfile --platform linux/amd64 -t grantfl/simple-csi .
 
 .PHONY: publish
 publish:
-	docker push grantfl/csi-driver
+	docker push grantfl/simple-csi
 
 .PHONY: deploy
 deploy:
-	kubectl apply -f deployments/csi-driver
+	kubectl apply -f deployments/simple-csi
 
 .PHONY: undeploy
 undeploy:
-	kubectl delete -f deployments/csi-driver
+	kubectl delete -f deployments/simple-csi

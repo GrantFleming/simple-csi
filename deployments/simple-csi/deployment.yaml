@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: csi-driver
+  name: simple-csi
   namespace: default
   labels:
-    app: csi-driver
+    app: simple-csi
 spec:
   selector:
     matchLabels:
-      app: csi-driver
+      app: simple-csi
   replicas: 1
   template:
     metadata:
       annotations:
-        kubectl.kubernetes.io/default-container:  csi-driver
+        kubectl.kubernetes.io/default-container:  simple-csi
       labels:
-        app: csi-driver
+        app: simple-csi
     spec:
       containers:
-      - name: csi-driver
-        image: "grantfl/csi-driver:latest"
+      - name: simple-csi
+        image: "grantfl/simple-csi:latest"
         imagePullPolicy: IfNotPresent
         resources:
           requests:
