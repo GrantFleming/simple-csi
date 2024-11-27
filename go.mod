@@ -2,7 +2,10 @@ module grant.goose/csi
 
 go 1.23.3
 
-require google.golang.org/grpc v1.68.0
+require (
+	github.com/container-storage-interface/spec v1.11.0
+	google.golang.org/grpc v1.68.0 // indirect
+)
 
 require (
 	golang.org/x/net v0.29.0 // indirect
