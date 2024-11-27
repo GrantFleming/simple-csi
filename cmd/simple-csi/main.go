@@ -1,7 +1,7 @@
 package main
 
-import "grant.goose/csi/internal/app"
+import "grant.goose/csi/internal/plugins/controller"
 
-func main()  {
-  app.Start();
+func main() {
+	controller.Start()
 }
